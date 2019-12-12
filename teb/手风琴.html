@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style:none;
+        }
+        #myclo{
+            width: 1200px;
+            height: 420px;
+            overflow: hidden;
+            margin: 50px auto;
+            /* background: url(http://www.jq22.com/demo/jQuerySfq201710142020/Images/a1.png); */
+        }
+        #myclo .item{
+            width: 200px;
+            float: left;
+            height: 420px;
+            transition: all 0.2s;
+            /* transition: none; */
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <myclo :varr="arr"></myclo>
+    </div>
+    <template id="myclo">
+        <div id="myclo">
+            <div class="item" v-for="(i,index) in arr" :key="index" :style="{backgroundImage:'url('+ i.src +')',backgroundSize:'cover',width:index==z_index?'600px':'200px'}" @click="btn(index)">
+               <p>{{i.title}}</p> 
+               <!-- {{z_index==index}} -->
+           </div> 
+        </div>
+    </template>
+</body>
+
+</html>
+<script src="vue.js"></script>
+<script>
+    Vue.component('myclo', {
+        template: "#myclo",
+        props: ['varr'],
+        data(){
+            return{
+                arr:this.varr,
+                z_index:0
+            }
+        },
+        methods:{
+            btn(index){
+                console.log(index)
+                this.z_index=index
+            }
+        }
+    })
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            arr: [{
+                src: "http://www.jq22.com/demo/jQuerySfq201710142020/Images/a1.png",
+                title: "选项一"
+            }, {
+                src: "http://www.jq22.com/demo/jQuerySfq201710142020/Images/a2.png",
+                title: "选项二"
+            }, {
+                src: "http://www.jq22.com/demo/jQuerySfq201710142020/Images/a3.png",
+                title: "选项三"
+            },
+            {
+                src: "http://www.jq22.com/demo/jQuerySfq201710142020/Images/a4.png",
+                title: "选项四"
+            }]
+        },
+        methods: {
+
+        }
+    })
+</script>
