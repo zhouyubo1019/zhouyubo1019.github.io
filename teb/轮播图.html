@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			img{
+				width:100%;
+				height: 400px;
+			}
+			.no1 {
+				width: 100%;
+				min-height: 400px;
+				position: relative;
+				overflow: hidden;
+			}
+			.no2 {
+				position: absolute;
+				transition: all .3s;
+				top: 0;
+			}
+			.l,.r {
+				width: 40px;
+				text-align: center;
+				line-height: 80px;
+				background: rgba(255, 0, 0, 0.3);
+				position: absolute;
+				top: 50%;
+				margin-top: -40px;
+				color: #FFFFFF;
+				font-size: 35px;
+			}
+			.l {
+				left: 0;
+			}
+			.r {
+				right: 0;
+			}
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" v-cloak="">
+			<lunbo :imgarr="arr"></lunbo>
+		</div>
+		<template id="box1">
+			<div>
+				<div style="width:700px;">
+					<div class="no1" >
+						<div class="no2" :style="{width: 100*arr.length+'%',left:index*-100+'%'}">
+							<img v-for="i in arr" :src="i" :style="{width: 100/arr.length+'%'}" />
+						</div>
+						<div class="l" @click="pre"> <</div> 
+						<div class="r" @click="next"> > </div>
+					</div>
+				</div>
+			</div>
+		</template>
+	</body>
+	<script src="vue.js"></script>
+	<script>
+		Vue.component('lunbo', {
+				template: '#box1',
+				mounted() {
+					var no2_dom = document.getElementsByClassName('no2')[0].offsetHeight
+					this.no2_dom = no2_dom
+				},
+				methods: {
+					// 右键
+					next() {
+						this.index++
+						if (this.index >= this.arr.length) {
+							this.index = 0
+						}
+					},
+					// 左键
+					pre() {
+						this.index--
+						if (this.index <= -1) {
+							this.index = this.arr.length - 1
+						}
+					}
+				},
+				props: ['imgarr'],
+				data(){
+					return {
+						no2_dom: 0,
+						index: 0,
+						arr: this.imgarr
+					}
+				}
+			}),
+
+			new Vue({
+				el: '#box',
+				data: {
+					arr: [
+						'http://file02.16sucai.com/d/file/2014/0704/e53c868ee9e8e7b28c424b56afe2066d.jpg',
+						'http://img12.3lian.com/gaoqing02/02/93/37.jpg',
+						'http://dmimg.5054399.com/allimg/pkm/pk/22.jpg',
+						'http://file02.16sucai.com/d/file/2014/0829/372edfeb74c3119b666237bd4af92be5.jpg',
+						'http://file02.16sucai.com/d/file/2015/0128/8b0f093a8edea9f7e7458406f19098af.jpg'
+					]
+				}
+			})
+	</script>
+</html>
