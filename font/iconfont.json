@@ -1,0 +1,44 @@
+{
+  "id": "1564140",
+  "name": "起飞页",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "55531",
+      "name": "QQ",
+      "font_class": "87",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "566023",
+      "name": "电话",
+      "font_class": "dianhua",
+      "unicode": "e63e",
+      "unicode_decimal": 58942
+    },
+    {
+      "icon_id": "606268",
+      "name": "facebook",
+      "font_class": "facebookfacebook51",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "834840",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e64c",
+      "unicode_decimal": 58956
+    },
+    {
+      "icon_id": "2513045",
+      "name": "BAI-邮件",
+      "font_class": "BAI-youjian",
+      "unicode": "e6c1",
+      "unicode_decimal": 59073
+    }
+  ]
+}
