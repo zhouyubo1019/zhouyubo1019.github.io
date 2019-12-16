@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <el-slider :value="num" @input="num=$event"></el-slider>
+        {{num}}
+    </div>
+    <template id="content">
+        <div>
+            <input type="range" min="0" step="1" v-model="v" style="width:300px;"> 
+            <button @click="jian">-</button>
+            <input type='text' v-model="v">
+            <button @click="jia">+</button>
+        </div>
+    </template>
+</body>
+<script src="../起飞页/vue.js"></script>
+<script>
+    Vue.component('el-slider', {
+        template: '#content',
+        computed: {
+            v: {
+                get() {
+                    return this.value
+                },
+                set(v) {
+                    this.$emit('input', v);
+                }
+            }
+        },
+        props: ['value'],
+        methods: {
+            jia() {
+                this.v++;
+            },
+            jian() {
+                this.v--;
+            },
+        },
+    });
+    new Vue({
+        el: '#box',
+        data() {
+            return {
+                num: 0,
+            }
+        },
+    })
+</script>
+
+</html>
