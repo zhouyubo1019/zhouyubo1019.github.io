@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+            font-family: microsoft yahei
+        }
+
+        a,
+        a:link,
+        a:visited,
+        a:hover,
+        a:active {
+            text-decoration: none
+        }
+
+        ::-moz-selection {
+            background: #338fff;
+            color: #fff
+        }
+
+        ::-webkit-selection {
+            background: #338fff;
+            color: #fff
+        }
+
+        ::selection {
+            background: #338fff;
+            color: #fff
+        }
+
+        .clear::after {
+            content: "";
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden
+        }
+
+        .response-img {
+            display: block;
+            max-width: 100%
+        }
+
+        .text-overflow {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        body {
+            width: 100%;
+            max-width: 1920px;
+            min-width: 1200px;
+            background-color: #222
+        }
+
+        #knowledge {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            padding: 40px 0
+        }
+
+        .bookBox {
+            width: 1000px;
+            height: 600px;
+            position: relative;
+            margin: 30px auto;
+            -webkit-perspective-origin: 50% 60%;
+            perspective-origin: 50% 60%;
+            -webkit-perspective: 1500px;
+            perspective: 1500px;
+            background-color: blue;
+            background-size: 100% 100%
+        }
+
+        .bookBox:hover .lastBtn {
+            display: block
+        }
+
+        .bookBox:hover .nextBtn {
+            display: block
+        }
+
+        .bookPage {
+            position: absolute;
+            width: 500px;
+            height: 580px;
+            top: 0;
+            -webkit-transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-transition: all linear 2s;
+            -moz-transition: all linear 2s;
+            -ms-transition: all linear 2s;
+            -o-transition: all linear 2s;
+            transition: all linear 2s;
+            background-color: red;
+            background-size: 479.26px 780px;
+            background-position: 20.74px 8.3px
+        }
+
+        .bookPage img {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            display: inline-block;
+            width: 400px
+        }
+
+        .bookWord {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            display: inline-block;
+            width: 360px;
+            padding: 20px;
+            font-size: 20px;
+            line-height: 27px;
+            backface-visibility: visible;
+            background-color: #f0f0f0;
+            word-break: break-all;
+            -webkit-column-count: 2;
+            -webkit-column-gap: 40px;
+            -moz-column-count: 2;
+            -moz-column-gap: 40px;
+            -ms-column-count: 2;
+            -ms-column-gap: 40px;
+            column-count: 2;
+            column-gap: 40px
+        }
+
+        .bookWord span {
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 40px
+        }
+
+        .frist {
+            left: 0;
+            z-index: 1
+        }
+
+        .frist img {
+            z-index: 1
+        }
+
+        .last {
+            right: 0;
+            z-index: 1
+        }
+
+        .last p {
+            z-index: 1
+        }
+
+        .runPage {
+            right: 0;
+            -webkit-transform-origin: 0 0;
+            -moz-transform-origin: 0 0;
+            -ms-transform-origin: 0 0;
+            -o-transform-origin: 0 0;
+            transform-origin: 0 0
+        }
+
+        .runPage,
+        .bookPage:last-child {
+            background-color: red;
+            background-size: 479.26px 780px;
+            background-position: 0 8.3px
+        }
+
+        .runClass {
+            -webkit-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            -o-transform: rotateY(-180deg);
+            transform: rotateY(-180deg)
+        }
+
+        .lastBtn,
+        .nextBtn {
+            display: none;
+            position: absolute;
+            top: 300px;
+            cursor: pointer;
+            z-index: 999;
+            font-size: 50px;
+            line-height: 100px;
+            color: #fff;
+            text-decoration: none;
+            background-color: rgba(0, 0, 0, .5)
+        }
+
+        .lastBtn {
+            left: 0
+        }
+
+        .nextBtn {
+            right: 0
+        }
+
+        .canvasBox {
+            display: block;
+            width: 158px;
+            height: 158px
+        }
+
+        .pageNumber {
+            position: absolute;
+            bottom: -40px;
+            right: 0;
+            font-size: 20px !important;
+            line-height: 30px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <no1 :asrc='arr'></no1>
+    </div>
+    <template id="no1">
+        <div id="knowledge" class="viewBlock">
+            <div class="bookBox">
+                <a class="lastBtn">
+                    <</a> <a class="nextBtn">>
+                </a>
+                <div class="bookPage frist">
+                    <img src="http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg1.png" />
+                </div>
+                <div class="bookPage runPage">
+                    <div class="bookWord">
+                        <span>Glacier</span> red in the glacier.
+                        <span class="pageNumber">1</span>
+                    </div>
+                    <img src="http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg2.png" />
+                </div>
+                <div class="bookPage runPage">
+                    <div class="bookWord">
+                        <span>Surface</span> water supply, the .
+                        <span class="pageNumber">2</span>
+                    </div>
+                    <img src="http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg3.png" />
+                </div>
+                <div class="bookPage runPage">
+                    <div class="bookWord">
+                        <span>Groundwater</span>itions, good .
+                        <span class="pageNumber">3</span>
+                    </div>
+                    <img src="http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg4.png" />
+                </div>
+                <div class="bookPage last">
+                    <div class="bookWord">
+                        <span>Ocean</span>nts for only 2%.</span>
+                        <span class="pageNumber">4</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</body>
+<script src="../起飞页/vue.js"></script>
+<script>
+    Vue.component('no1', {
+        template: '#no1',
+        props:['asrc'],
+        data(){
+            return {
+                arr:this.asrc
+            }
+        },
+        mounted() {
+            $(function () {
+                var pageNum = 0;
+                for (var i = 0; i < $('.runPage').length; i++) {
+                    $('.runPage').eq(i).css('z-index', 7 - 2 * i);
+                    $('.runPage').eq(i).children('div').css('z-index', 7 - 2 * i);
+                    $('.runPage').eq(i).children('img').css('z-index', 6 - 2 * i);
+                };
+                $('.nextBtn').bind('click', function () {
+                    if (pageNum <= 2) {
+                        runNext(pageNum); pageNum++;
+                    };
+                    console.log(pageNum);
+                });
+                function runNext(index) {
+                    $('.runPage').eq(index).addClass('runClass');
+                    zIndexNext(index, $('.runPage').eq(index));
+                }
+                function zIndexNext(index, element) {
+                    if (index >= 1) {
+                        element.css('z-index', 3 + 2 * index);
+                    };
+                    setTimeout(function () {
+                        if (index == 0) {
+                            element.css('z-index', 3 + 2 * index);
+                        };
+                        element.children('div').css('z-index', 2 + 2 * index);
+                        element.children('img').css('z-index', 3 + 2 * index);
+                    }, 1000);
+                }
+                $('.lastBtn').bind('click', function () {
+                    if (pageNum >= 1) {
+                        pageNum--; runLast(pageNum);
+                    };
+                    console.log(pageNum);
+                });
+                function runLast(index) {
+                    $('.runPage').eq(index).removeClass('runClass');
+                    zIndexLast(index, $('.runPage').eq(index));
+                }
+                function zIndexLast(index, element) {
+                    if (index == 0) {
+                        element.css('z-index', 7 - 2 * index);
+                    };
+                    setTimeout(function () {
+                        element.css('z-index', 7 - 2 * index);
+                        element.children('div').css('z-index', 7 - 2 * index);
+                        element.children('img').css('z-index', 6 - 2 * index);
+                    }, 1000);
+                }
+            });
+        }
+    })
+    new Vue({
+        el: '#box',
+        // data:{
+        //     arr:[
+        //         {
+        //             src:"http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg1.png"
+        //         },
+        //         {
+        //             src:"http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg2.png"
+        //         },
+        //         {
+        //             src:"http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg3.png"
+        //         },
+        //         {
+        //             src:"http://www.jq22.com/demo/jQueryflip-books20161219/img/dataImg4.png"
+        //         }
+        //     ]
+        // }
+    })
+
+</script>
+
+</html>
