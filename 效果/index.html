@@ -228,7 +228,7 @@
 
 <body>
     <div id="box">
-        <no1 :asrc='arr'></no1>
+        <no1></no1>
     </div>
     <template id="no1">
         <div id="knowledge" class="viewBlock">
@@ -274,12 +274,6 @@
 <script>
     Vue.component('no1', {
         template: '#no1',
-        props:['asrc'],
-        data(){
-            return {
-                arr:this.asrc
-            }
-        },
         mounted() {
             $(function () {
                 var pageNum = 0;
