@@ -1,0 +1,44 @@
+{
+  "id": "1571065",
+  "name": "项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1203467",
+      "name": "facebook",
+      "font_class": "facebook",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "1319346",
+      "name": "飞机",
+      "font_class": "feiji",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "1330569",
+      "name": "微信",
+      "font_class": "weixin",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "3843477",
+      "name": "相机",
+      "font_class": "xiangji",
+      "unicode": "e6e7",
+      "unicode_decimal": 59111
+    },
+    {
+      "icon_id": "9917257",
+      "name": "微博",
+      "font_class": "weibo",
+      "unicode": "e6a4",
+      "unicode_decimal": 59044
+    }
+  ]
+}
